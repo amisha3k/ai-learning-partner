@@ -1,8 +1,8 @@
 import streamlit as st
 
-from mock_interview import mock_interview
-from ai_tutor import ai_tutor
-from ats_analyzer import ats
+from backend.mock_interview import mock_interview
+from backend.ai_tutor import ai_tutor
+from backend.ats_analyzer import ats
 
 st.set_page_config(page_title="Ai learning partner", layout ="wide")
 st.title("AI LEARNING PARTNER")
