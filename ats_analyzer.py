@@ -61,8 +61,8 @@ def ats():
         st.subheader("ATS analysis result")
         st.write(response)    
 
-if __name__ == "__main__":
-     ats()
+# if __name__ == "__main__":
+#      ats()
 
 
 

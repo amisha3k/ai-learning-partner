@@ -1,7 +1,7 @@
 import streamlit as st
 
-from mock_interview import mi
-from ai_tutor import tutor
+from mock_interview import mock_interview
+from ai_tutor import ai_tutor
 from ats_analyzer import ats
 
 st.set_page_config(page_title="Ai learning partner", layout ="wide")
@@ -16,7 +16,7 @@ if mode=="Mock Interview":
     st.subheader("Mock Interview Mode")
     mock_interview()
 
-elif mode=="AT Tutor":
+elif mode=="AI Tutor":
     st.subheader("AI Tutor Mode")
     ai_tutor()
 
