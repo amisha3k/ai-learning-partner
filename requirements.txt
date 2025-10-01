@@ -9,3 +9,14 @@ streamlit
 streamlit_chat
 streamlit_option_menu
 pypdf2
+
+
+# groq_bot_1.py → retrieval.py (or rag_backend.py)
+
+# groq_bot_2.py → tutor_bot.py
+
+# mi_bot.py → mock_interview_engine.py
+
+# mi_chat_app.py → mock_interview_page.py
+
+# If you want, I can:
