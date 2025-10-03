@@ -38,5 +38,6 @@ Here are the upcoming enhancements planned for **AI Learning Partner**:
 
 - [ ] **D) Dockerize the app**  
   Add a `Dockerfile` and `requirements.txt` to containerize the Streamlit app, making it portable and ready for deployment to platforms like Hugging Face Spaces, Render, or AWS.
+-  allow voice answer recording → transcription → evaluation.
 
 ---
