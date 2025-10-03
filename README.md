@@ -22,3 +22,21 @@
 - Performs **section-wise analysis** to determine strong and weak areas.  
 - Computes an **overall score** based on all evaluation criteria.  
 - Provides **scope of improvement** suggestions to enhance resume quality.  
+
+## 🚀 Future Improvements
+
+Here are the upcoming enhancements planned for **AI Learning Partner**:
+
+- [ ] **A) Add PDF parsing**  
+  Integrate a library like `pdfplumber` to support direct PDF uploads for resumes, job descriptions, and course content.
+
+- [ ] **B) Upgrade Tutor with FAISS + Sentence-Transformers**  
+  Replace the current TF-IDF retrieval with a semantic search pipeline using FAISS and embeddings (e.g., `all-MiniLM-L6-v2` from Sentence Transformers) for more accurate knowledge retrieval.
+
+- [ ] **C) Improve ATS with spaCy skill extraction & scoring rubric**  
+  Use `spaCy` or specialized libraries to extract entities (skills, tools, experience years) from resumes and JDs, then create a structured scoring rubric for better ATS-style analysis.
+
+- [ ] **D) Dockerize the app**  
+  Add a `Dockerfile` and `requirements.txt` to containerize the Streamlit app, making it portable and ready for deployment to platforms like Hugging Face Spaces, Render, or AWS.
+
+---
