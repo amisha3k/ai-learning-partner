@@ -5,10 +5,15 @@ torch
 pypdf
 faiss-cpu
 langchain_huggingface
-streamlit
-streamlit_chat
-streamlit_option_menu
 pypdf2
+
+fastapi
+uvicorn
+langchain
+langchain-groq
+pydantic
+python-dotenv
+PyPDF2
 
 
 # groq_bot_1.py → retrieval.py (or rag_backend.py)

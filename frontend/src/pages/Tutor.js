@@ -13,7 +13,7 @@ export default function Tutor() {
 
     try {
       const res = await api.post("/tutor/ask", {
-        query: input,
+        question: input,
         chat_history: messages.map(m => m.content),
       });
       const botMsg = { role: "assistant", content: res.data.answer };
