@@ -23,7 +23,7 @@ export default function ATS() {
     formData.append("jd", jd);
 
     try {
-      const res = await api.post("/ats/analyze", formData, {  // <-- Fixed URL
+      const res = await api.post("/api/ats/analyze", formData, {  // <-- Fixed URL
         headers: { "Content-Type": "multipart/form-data" },
       });
 

@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app=FastAPI(title="AI LEARNING PARTNER API")
 
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -11,6 +12,14 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )## this allows any frontend(ex-react) to call the backend
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["http://localhost:3000", "http://localhost:3001"],  # your React URL
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
 
 app.include_router(tutor.router,prefix="/api/tutor",tags=["Tutor"])
 app.include_router(ats.router,prefix="/api/ats",tags=["ATS Analyzer"])

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile
+from fastapi import APIRouter, UploadFile,Form
 from app.models.mock_models import MockResponse
 from app.services.mock_service import generate_questions
 import PyPDF2 as pdf
@@ -6,7 +6,7 @@ import PyPDF2 as pdf
 router = APIRouter()
 
 @router.post("/start", response_model=MockResponse)
-async def start_mock(file: UploadFile, role: str):
+async def start_mock(file: UploadFile, role: str = Form(...)):
     """
     Generate mock interview questions based on resume and role.
     """

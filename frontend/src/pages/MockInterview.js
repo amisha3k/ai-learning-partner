@@ -1,64 +1,74 @@
+
 import React, { useState } from "react";
 import api from "../api";
-import ChatMessage from "../components/ChatMessage";
 
 export default function MockInterview() {
-  const [resume, setResume] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
+  const [file, setFile] = useState(null);
+  const [role, setRole] = useState("");
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const startInterview = async () => {
-    if (!resume) return alert("Upload resume first!");
-    const formData = new FormData();
-    formData.append("resume", resume);
-    try {
-      const res = await api.post("/mock-interview/start", formData);
-      setMessages([{ role: "assistant", content: res.data.message }]);
-    } catch (err) {
-      console.error(err);
+    if (!file || !role) {
+      setError("Please upload your resume and enter a role.");
+      return;
     }
-  };
 
-  const sendAnswer = async () => {
-    if (!input) return;
-    const userMsg = { role: "user", content: input };
-    setMessages([...messages, userMsg]);
+    setError("");
+    setLoading(true);
+    setQuestions([]);
+
+    const formData = new FormData();
+    formData.append("file", file); // matches FastAPI param
+    formData.append("role", role);   // matches FastAPI param
+
     try {
-      const res = await api.post("/mock-interview/answer", {
-        answer: input,
-        chat_history: messages.map(m => m.content),
+      const res = await api.post("/api/mock_interview/start", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      const botMsg = { role: "assistant", content: res.data.response };
-      setMessages(prev => [...prev, userMsg, botMsg]);
+
+      setQuestions(res.data.questions || []);
     } catch (err) {
       console.error(err);
+      setError("Error communicating with interview bot.");
+    } finally {
+      setLoading(false);
     }
-    setInput("");
   };
 
   return (
     <div className="container mt-4">
       <h2>🎤 Mock Interview</h2>
-      {!resume && (
-        <div>
-          <input type="file" className="form-control mb-3" onChange={(e) => setResume(e.target.files[0])} />
-          <button className="btn btn-primary" onClick={startInterview}>Start Interview</button>
-        </div>
-      )}
-      <div className="chat-box border rounded p-3 mb-3" style={{ height: "400px", overflowY: "auto" }}>
-        {messages.map((msg, i) => (
-          <ChatMessage key={i} role={msg.role} content={msg.content} />
-        ))}
+
+      <div className="mb-3">
+        <input
+          type="file"
+          className="form-control mb-2"
+          onChange={(e) => setFile(e.target.files[0])}
+        />
+        <input
+          type="text"
+          className="form-control mb-2"
+          placeholder="Enter role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+        />
+        <button className="btn btn-primary" onClick={startInterview} disabled={loading}>
+          {loading ? "Starting Interview..." : "Start Interview"}
+        </button>
       </div>
-      {resume && (
-        <div className="d-flex">
-          <input
-            className="form-control me-2"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Your answer..."
-          />
-          <button className="btn btn-primary" onClick={sendAnswer}>Send</button>
+
+      {error && <div className="alert alert-danger">{error}</div>}
+
+      {questions.length > 0 && (
+        <div className="mt-3">
+          <h5>📄 Questions:</h5>
+          <ol>
+            {questions.map((q, i) => (
+              <li key={i}>{q}</li>
+            ))}
+          </ol>
         </div>
       )}
     </div>
