@@ -12,7 +12,7 @@ export default function Tutor() {
     setMessages([...messages, userMsg]);
 
     try {
-      const res = await api.post("/tutor/ask", {
+      const res = await api.post("api/tutor/ask", {
         question: input,
         chat_history: messages.map(m => m.content),
       });

@@ -9,7 +9,8 @@ from dotenv import load_dotenv
 load_dotenv()  # Ensure GROQ_API_KEY is loaded
 
 groq_api_key = os.getenv("GROQ_API_KEY")
-llm = ChatGroq(groq_api_key=groq_api_key, model_name="gemma2-9b-it")
+llm = ChatGroq(groq_api_key=groq_api_key, model_name="llama-3.3-70b-versatile")
+
 
 prompt_template = """
 You are a technical recruiter with lots of experience in computer science and engineering.
