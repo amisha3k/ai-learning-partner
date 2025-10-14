@@ -1,4 +1,5 @@
-# AI Learning Partner
+# AI Learning Partner  - An Intelligent Learning and Career Assistance Platform
+Introduction
 
 ## Features
 
